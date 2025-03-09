@@ -1,0 +1,166 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('brick-background.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
+
+.section {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 30px; 
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.value-proposition {
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin: 2rem auto;
+    max-width: 1200px;
+    text-align: left;
+}
+
+.testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.testimonial {
+    background-color: #624779;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial p {
+    font-size: 1rem;
+    color: #ddd;
+}
+
+.testimonial small {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.faq-item {
+   text-align: left; 
+}
+
+.contacts {
+   text-align:center; 
+}
+
+.hero {
+   display:flex; 
+   align-items:center; 
+   justify-content :space-between; 
+   padding :100px 10%; 
+   color :#fff; 
+}
+ 
+.hero-content {
+   max-width :45%; 
+   align-items:center; 
+   background :rgba(255,255,255,0.8); 
+   padding :50px; 
+   border-radius :8px; 
+   text-align:center; 
+}
+ 
+.hero-content h1 {
+   font-size :36px; 
+   margin-bottom :20px; 
+   color:#000; 
+}
+ 
+.hero-content p {
+   font-size :18px; 
+   margin-bottom :20px; 
+   color:#444; 
+}
+ 
+.small-text {
+   font-size :12px; 
+   margin-top :5px; 
+}
+ 
+.hero-image img {
+   width :500px; 
+   border-radius :10px; 
+} 
+
+h2 {  
+   font-size :2rem;  
+   margin-bottom :1rem;  
+   text-align:center ;
+}  
+ 
+h3 {  
+   font-size :1.75rem;  
+   margin-top :1.5rem;  
+}  
+ 
+h4 {  
+   font-size :1.5rem;  
+   margin-top :1rem;  
+}  
+ 
+p {  
+     font-size :1.25rem;  
+} 
+
+.cta-btn {   
+    display: inline-block;   
+    padding: 10px 20px;
+    background: #624779;   
+    color: white;
+    text-decoration: none;   
+    border-radius: 5px;   
+    margin-top: 10px;   
+}
+
+
+footer {   
+     text-align: center;   
+     padding: 15px 50px;
+     background: rgba(0, 0, 0, 0.8);    
+     color: white;   
+     margin-top: 50px;   
+}
