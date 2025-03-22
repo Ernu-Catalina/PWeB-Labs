@@ -63,7 +63,7 @@
 <section class="section social-proof py-5" id="social-proof">
     <div class="container">
         <h2 class="text-center mb-4 text-black">What Our Customers Say</h2>
-        <div class="testimonials row row-cols-1 row-cols-md-3 row-cols-lg-3 g-4">
+        <div class="testimonials row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
             <div class="col">
                 <div class="testimonial card h-100 shadow-sm border-0 bg-purple">
                     <div class="card-body">
@@ -144,17 +144,22 @@
 <style>
     .bg-purple {
         background-color: #573770;
-        h2-color: black;
     }
     .testimonials .col {
         display: flex;
         justify-content: center;
+        margin-bottom: 10px;
     }
     .testimonials .card-body {
         padding: 0px;
     }
+    .testimonials .card {
+        margin-bottom: 15px;
+    }
     .testimonial button h5 {
         color: white;
+        font-size: 1.1rem;
+        line-height: 1.4
     }
 </style>
 
