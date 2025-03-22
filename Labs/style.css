@@ -1,0 +1,209 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('brick-background.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
+
+.section {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 100px 10%;
+    color: #fff;
+}
+
+.hero-content {
+    max-width: 45%;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+.hero-image img {
+    width: 500px;
+    border-radius: 10px;
+}
+
+/* Call to Action Button */
+.cta-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #573770;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* Testimonials Section */
+.testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.testimonial {
+    background-color: #573770;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial p {
+    font-size: 1rem;
+    color: #ddd;
+}
+
+.testimonial small {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+/* FAQ Section */
+.faq-item {
+    text-align: left;
+}
+
+/* Mascot and Speech Bubble */
+.mascot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.mascot-wrapper {
+    position: relative;
+}
+
+.mascot {
+    width: 100px;
+    height: 100px;
+}
+
+.speech-bubble {
+    position: absolute;
+    bottom: 120%;
+    right: 0; /* Align the bubble to the right of the mascot */
+    transform: translateX(0); /* Remove the translateX to make it align right */
+    background-color: rgba(255, 255, 255, 0.9);
+    color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border-radius: 8px;
+    display: none;
+    white-space: normal;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: max-content; /* Ensures the bubble expands to fit content */
+    min-width: 150px; /* Ensure the bubble has a minimum width */
+    max-width: 180px; /* Prevent it from becoming too wide */
+}
+
+.mascot-wrapper:hover .speech-bubble {
+    display: block;
+    overflow-wrap: break-word; /* Allow text to wrap within the bubble */
+    max-width: 180px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 15px 50px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    margin-top: 50px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        padding: 50px 5%;
+    }
+
+    .hero-content {
+        max-width: 90%;
+    }
+
+    .hero-image img {
+        width: 80%;
+        margin-top: 20px;
+    }
+
+    .section {
+        padding: 15px;
+    }
+
+    .cta-btn {
+        padding: 15px 30px;
+    }
+
+    /* Mobile-only Section Example */
+    .mobile-only {
+        display: block;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-only {
+        display: none;
+    }
+}
