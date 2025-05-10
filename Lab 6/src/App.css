@@ -1,0 +1,31 @@
+/* Light Mode Styles */
+.light-mode {
+  background-color: #d9d5de;
+  color: #856f9e;
+}
+
+.light-mode .card {
+  background-color: #ffffff;
+  color: #856f9e;
+}
+
+.light-mode .btn-dark {
+  background-color: #4c3c5e;
+  color: white;
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+  background-color: #201e21;
+  color: #4c3c5e;
+}
+
+.dark-mode .card {
+  background-color: #4c3c5e;
+  color: #d9d5de;
+}
+
+.dark-mode .btn-dark {
+  background-color: #201e21;
+  color: white;
+}
