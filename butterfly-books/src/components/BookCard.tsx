@@ -18,7 +18,7 @@ const BookCard: React.FC<BookCardProps> = ({ book, deleteBook, toggleFavorite })
       <h3>{book.title}</h3>
       <p>{book.author}</p>
       <p>{book.status}</p>
-      {book.rating > 0 && <p>⭐Rating: {book.rating}/5</p>}
+      {book.rating > 0 && <p>★ Rating: {book.rating}/5</p>}
       <div>
         <button className="delete-btn" onClick={() => deleteBook(book.id)}>
           Delete
@@ -30,7 +30,7 @@ const BookCard: React.FC<BookCardProps> = ({ book, deleteBook, toggleFavorite })
             toggleFavorite(book.id, book.favorite);
           }}
         >
-          {book.favorite ? '❤️' : '🩶'}
+          {book.favorite ? '❤' : '♡'}
         </button>
       </div>
     </div>

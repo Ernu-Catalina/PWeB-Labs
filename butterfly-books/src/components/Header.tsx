@@ -18,7 +18,7 @@ const Header: React.FC<HeaderProps> = ({ theme, setTheme }) => {
         <h1>Butterfly Books</h1>
       </div>
       <button className="theme-toggle" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
-        {theme === 'light' ? '🌙' : '☀️'}
+        {theme === 'light' ? '⏾' : '☀'}
       </button>
     </header>
   );

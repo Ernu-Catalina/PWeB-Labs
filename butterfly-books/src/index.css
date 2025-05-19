@@ -11,7 +11,7 @@ body {
   line-height: 1.6;
   background: var(--background);
   min-height: 100vh;
-  color: var(--text); /* Ensure all text inherits theme color */
+  color: var(--text);
 }
 
 .app-container {
@@ -103,7 +103,7 @@ body {
 
 .search-bar input::placeholder {
   color: var(--text);
-  opacity: 0.6; /* Slightly faded for contrast */
+  opacity: 0.6;
 }
 
 .filter-row {
@@ -118,7 +118,7 @@ body {
 }
 
 .favorites-label {
-  color: var(--text); /* Ensure "Favorites Only" adapts to theme */
+  color: var(--text);
 }
 
 .filter-row select {
@@ -147,8 +147,8 @@ body {
 }
 
 .header-logo {
-  width: 50px;
-  height: 50px;
+  width: 65px;
+  height: 65px;
 }
 
 .header h1 {
@@ -172,38 +172,38 @@ body {
   min-height: 80vh;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align fields to the left */
+  align-items: flex-start;
 }
 
 .form-header {
-  flex: 1; /* Takes equal space above fields */
+  flex: 1;
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
+  justify-content: center;
+  align-items: center;
   width: 100%;
 }
 
 .form-fields {
-  width: 95%; /* Slight margin on both sides */
-  margin: 0 auto; /* Center the fields container */
+  width: 95%;
+  margin: 0 auto;
 }
 
 .book-form h2 {
-  margin-bottom: 0; /* Remove default margin */
-  color: var(--text); /* Ensure theme color */
+  margin-bottom: 0;
+  color: var(--text);
 }
 
 .form-label {
-  color: var(--text); /* Ensure "Title", "Author", "Cover Image URL", "Status" adapt to theme */
-  margin-bottom: 5px; /* Space between label and input */
+  color: var(--text);
+  margin-bottom: 5px;
 }
 
 .book-form input,
 .book-form select {
   display: block;
-  width: 100%; /* Full width within form-fields for equal margins */
+  width: 100%;
   padding: 10px;
-  margin-bottom: 15px; /* Space between fields */
+  margin-bottom: 15px;
   border: none;
   border-radius: 4px;
   background: var(--input-bg);
@@ -213,7 +213,7 @@ body {
 
 .book-form input::placeholder {
   color: var(--text);
-  opacity: 0.6; /* Slightly faded for contrast */
+  opacity: 0.6;
 }
 
 .book-form select {
@@ -221,10 +221,10 @@ body {
 }
 
 .form-footer {
-  flex: 1; /* Takes equal space below fields */
+  flex: 1;
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
+  justify-content: center;
+  align-items: center;
   width: 100%;
 }
 
@@ -238,7 +238,7 @@ body {
   font-weight: 600;
   transition: transform 0.2s, box-shadow 0.2s;
   font-family: 'Merriweather', serif;
-  font-size: 0.9rem; /* Slightly smaller button text */
+  font-size: 0.9rem;
 }
 
 .book-form button:hover {
@@ -247,19 +247,19 @@ body {
 }
 
 .book-form button:disabled {
-  background: #cccccc;
+  background: #86808a;
   cursor: not-allowed;
 }
 
 .book-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Smaller card width */
-  gap: 15px; /* Reduced gap */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px; 
 }
 
 .book-card {
   background: var(--card-bg);
-  padding: 10px; /* Reduced padding */
+  padding: 10px;
   border-radius: 8px;
   box-shadow: 0 2px 10px var(--shadow);
   text-align: center;
@@ -267,21 +267,21 @@ body {
 
 .book-card img.book-cover {
   width: 100%;
-  max-height: 200px; /* Smaller cover image */
+  max-height: 200px;
   object-fit: contain;
   border-radius: 4px;
-  margin-bottom: 8px; /* Reduced margin */
+  margin-bottom: 8px;
 }
 
 .book-card h3 {
-  font-size: 1rem; /* Smaller title */
-  margin-bottom: 4px; /* Reduced margin */
-  color: var(--text); /* Ensure theme color */
+  font-size: 1rem;
+  margin-bottom: 4px;
+  color: var(--text);
 }
 
 .book-card p {
-  font-size: 0.85rem; /* Smaller text */
-  margin-bottom: 8px; /* Reduced margin */
+  font-size: 0.85rem;
+  margin-bottom: 8px; 
   color: var(--text);
 }
 
@@ -289,13 +289,13 @@ body {
   background: var(--button-bg);
   color: var(--button-text);
   border: none;
-  padding: 6px 12px; /* Smaller button */
+  padding: 6px 12px;
   border-radius: 12px;
   cursor: pointer;
   font-weight: 600;
   transition: transform 0.2s, box-shadow 0.2s;
   font-family: 'Merriweather', serif;
-  font-size: 0.8rem; /* Smaller button text */
+  font-size: 0.8rem;
 }
 
 .book-card button:hover {
@@ -304,50 +304,43 @@ body {
 }
 
 .delete-btn {
-  background: #ffffff;
+  background: #9d97a2;
   color: var(--delete-text);
 }
 
 .favorite-btn {
   background: none;
   border: none;
-  font-size: 0.9rem; /* Smaller favorite icon */
+  font-size: 0.9rem;
   cursor: pointer;
   outline: none;
 }
 
 .favorite-btn:focus {
-  box-shadow: 0 0 0 2px rgba(107, 72, 255, 0.5);
+  box-shadow: 0 0 0 1px rgba(107, 72, 255, 0.5);
 }
 
-.favorite-btn--active {
-  color: #f59e0b;
-}
-
-.favorite-btn--inactive {
-  color: #9ca3af;
-}
 
 /* Light Theme */
 [data-theme='light'] {
-  --background: #fffdd0;
-  --text: #2f3640;
-  --card-bg: #ffffff;
-  --shadow: rgba(0, 0, 0, 0.1);
-  --button-bg: linear-gradient(90deg, #6b48ff, #a370ff);
-  --button-text: #ffffff;
-  --input-bg: #f0f0f0;
-  --delete-text: #2f3640;
+  --background: #f3f0f5;
+  --text: #0d0a0f;
+  --card-bg: #f0f0f0;
+  --shadow: #b9b6bb;
+  --button-bg: #b28ec7;
+  --button-text: #0d0a0f;
+  --input-bg: #dad6dc;
+  --delete-text: #0d0a0f;
 }
 
 /* Dark Theme */
 [data-theme='dark'] {
-  --background: #2f3640;
-  --text: #dcdde1;
-  --card-bg: #353b48;
-  --shadow: rgba(0, 0, 0, 0.3);
-  --button-bg: linear-gradient(90deg, #6b48ff, #a370ff);
+  --background: #141215;
+  --text: #9d97a2;
+  --card-bg: #1d1b1e;
+  --shadow: #0d0a0f;
+  --button-bg:  #5c3871;
   --button-text: #ffffff;
-  --input-bg: #4b5363;
-  --delete-text: #dcdde1;
+  --input-bg: #0e0c0f;
+  --delete-text: #0d0a0f;
 }
