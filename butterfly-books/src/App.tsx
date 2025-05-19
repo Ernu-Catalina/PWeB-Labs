@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import BookForm from './components/BookForm';
-import BookFilter from './components/BookFilter';
-import BookList from './components/BookList';
+import Library from './components/Library';
 
 export type Book = {
   id: number;
@@ -146,7 +145,6 @@ const App: React.FC = () => {
 
   const toggleFavorite = async (id: number, currentFavorite: boolean) => {
     console.log(`Attempting to toggle favorite for book ID ${id}, currentFavorite: ${currentFavorite}`);
-    // Optimistic update
     const newBooks = books.map(book => book.id === id ? { ...book, favorite: !currentFavorite } : book);
     setBooks(newBooks);
     console.log('Books state after optimistic update:', newBooks);
@@ -202,21 +200,27 @@ const App: React.FC = () => {
   });
 
   return (
-    <div data-theme={theme}>
-      <div className="container">
-        <Header theme={theme} setTheme={setTheme} />
-        <BookForm newBook={newBook} setNewBook={setNewBook} addBook={addBook} />
-        <BookFilter
-          filter={filter}
-          setFilter={setFilter}
-          search={search}
-          setSearch={setSearch}
-          ratingFilter={ratingFilter}
-          setRatingFilter={setRatingFilter}
-          favoriteFilter={favoriteFilter}
-          setFavoriteFilter={setFavoriteFilter}
-        />
-        <BookList books={filteredBooks} deleteBook={deleteBook} toggleFavorite={toggleFavorite} />
+    <div data-theme={theme} className="app-container">
+      <Header theme={theme} setTheme={setTheme} />
+      <div className="main-layout">
+        <div className="add-book-section">
+          <BookForm newBook={newBook} setNewBook={setNewBook} addBook={addBook} />
+        </div>
+        <div className="library-section">
+          <Library
+            books={filteredBooks}
+            filter={filter}
+            setFilter={setFilter}
+            search={search}
+            setSearch={setSearch}
+            ratingFilter={ratingFilter}
+            setRatingFilter={setRatingFilter}
+            favoriteFilter={favoriteFilter}
+            setFavoriteFilter={setFavoriteFilter}
+            deleteBook={deleteBook}
+            toggleFavorite={toggleFavorite}
+          />
+        </div>
       </div>
     </div>
   );
