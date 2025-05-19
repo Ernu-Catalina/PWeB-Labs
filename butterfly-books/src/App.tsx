@@ -3,6 +3,7 @@ import Header from './components/Header';
 import BookForm from './components/BookForm';
 import Library from './components/Library';
 
+// Define the Book type for type safety
 export type Book = {
   id: number;
   title: string;
@@ -13,7 +14,8 @@ export type Book = {
   favorite: boolean;
 };
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+// Get API URL from environment variable (set in Vercel as VITE_API_URL)
+const API_URL = import.meta.env.VITE_API_URL;
 
 const App: React.FC = () => {
   const [books, setBooks] = useState<Book[]>([]);
@@ -32,35 +34,37 @@ const App: React.FC = () => {
     favorite: false,
   });
 
+  // Validate API_URL on component mount
   useEffect(() => {
+    if (!API_URL) {
+      console.error('VITE_API_URL is not defined. Please set it in Vercel environment variables.');
+      alert('Error: Backend URL (VITE_API_URL) is not defined. Please contact the administrator.');
+      return;
+    }
     fetchBooks();
   }, []);
 
   const fetchBooks = async () => {
     try {
-      console.log('Books state before fetch:', books);
       const res = await fetch(`${API_URL}/api/books?_t=${Date.now()}`, {
         method: 'GET',
         mode: 'cors',
       });
-      if (res.ok) {
-        const data: Book[] = await res.json();
-        console.log('Fetched books:', data);
-        setBooks(data);
-        console.log('Books state after fetch:', data);
-      } else {
-        console.error('Failed to fetch books:', res.status, res.statusText);
+
+      if (!res.ok) {
+        throw new Error(`HTTP error ${res.status}: ${res.statusText}`);
       }
+
+      const data: Book[] = await res.json();
+      setBooks(data);
     } catch (error) {
-      if (error instanceof Error) {
-        console.error('Error fetching books:', error.message);
-      } else {
-        console.error('Unknown error fetching books:', error);
-      }
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      console.error('Error fetching books:', errorMessage);
+      alert(`Failed to fetch books: ${errorMessage}. Ensure the backend is running and CORS is configured.`);
     }
   };
 
-  const checkBackendAvailability = async () => {
+  const checkBackendAvailability = async (): Promise<boolean> => {
     try {
       const res = await fetch(`${API_URL}/api/books`, {
         method: 'HEAD',
@@ -74,17 +78,14 @@ const App: React.FC = () => {
 
   const addBook = async () => {
     if (!newBook.title || !newBook.author || !newBook.status) {
-      console.error('Invalid book data before sending:', newBook);
       alert('Please provide title, author, and status');
       return;
     }
 
-    console.log('Sending book data:', newBook);
-
     const isBackendAvailable = await checkBackendAvailability();
     if (!isBackendAvailable) {
       console.error('Backend is not available at', `${API_URL}/api/books`);
-      alert('Error: Backend server is not running or not reachable at ' + API_URL);
+      alert(`Error: Backend server is not running or not reachable at ${API_URL}. Please ensure the backend is deployed on Render.`);
       return;
     }
 
@@ -99,25 +100,17 @@ const App: React.FC = () => {
         body: JSON.stringify(newBook),
       });
 
-      if (res.ok) {
-        setNewBook({ id: 0, title: '', author: '', coverImage: '', status: 'To Be Read', rating: 0, favorite: false });
-        fetchBooks();
-      } else {
+      if (!res.ok) {
         const errorText = await res.text();
-        console.error('Failed to add book:', {
-          status: res.status,
-          statusText: res.statusText,
-          responseText: errorText,
-        });
-        alert(`Failed to add book: ${res.status} ${res.statusText} - ${errorText}`);
+        throw new Error(`HTTP error ${res.status}: ${res.statusText} - ${errorText}`);
       }
+
+      setNewBook({ id: 0, title: '', author: '', coverImage: '', status: 'To Be Read', rating: 0, favorite: false });
+      fetchBooks();
     } catch (error) {
-      if (error instanceof Error) {
-        console.error('Error adding book:', error.message);
-      } else {
-        console.error('Unknown error adding book:', error);
-      }
-      alert(`Error adding book: ${error instanceof Error ? error.message : 'Failed to fetch - check if the backend is running and CORS is configured correctly'}`);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      console.error('Error adding book:', errorMessage);
+      alert(`Error adding book: ${errorMessage}. Ensure the backend is running and CORS is configured correctly. Check console for details.`);
     }
   };
 
@@ -127,27 +120,24 @@ const App: React.FC = () => {
         method: 'DELETE',
         mode: 'cors',
       });
-      if (res.ok) {
-        fetchBooks();
-      } else {
-        console.error('Failed to delete book:', res.status, res.statusText);
-        alert('Failed to delete book');
+
+      if (!res.ok) {
+        throw new Error(`HTTP error ${res.status}: ${res.statusText}`);
       }
+
+      fetchBooks();
     } catch (error) {
-      if (error instanceof Error) {
-        console.error('Error deleting book:', error.message);
-      } else {
-        console.error('Unknown error deleting book:', error);
-      }
-      alert('Error deleting book');
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      console.error('Error deleting book:', errorMessage);
+      alert(`Failed to delete book: ${errorMessage}. Ensure the backend is running.`);
     }
   };
 
   const toggleFavorite = async (id: number, currentFavorite: boolean) => {
-    console.log(`Attempting to toggle favorite for book ID ${id}, currentFavorite: ${currentFavorite}`);
+    // Optimistic update
     const newBooks = books.map(book => book.id === id ? { ...book, favorite: !currentFavorite } : book);
     setBooks(newBooks);
-    console.log('Books state after optimistic update:', newBooks);
+
     try {
       const res = await fetch(`${API_URL}/api/books/${id}`, {
         method: 'PUT',
@@ -155,37 +145,21 @@ const App: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ favorite: !currentFavorite }),
       });
-      console.log(`PUT request to ${API_URL}/api/books/${id} - Status: ${res.status}, Headers:`, res.headers);
-      const responseText = await res.text();
-      console.log(`Response body: ${responseText}`);
-      if (res.status >= 200 && res.status < 300) {
-        console.log(`Successfully toggled favorite for book ID ${id} to ${!currentFavorite}`);
-        const updatedBook = JSON.parse(responseText);
-        setBooks(books.map(book => book.id === id ? updatedBook : book));
-        console.log(`Books state after PUT update:`, books);
-        await fetchBooks();
-        const updatedBookAfterFetch = books.find(book => book.id === id);
-        console.log(`Updated book (ID ${id}) after fetchBooks:`, updatedBookAfterFetch);
-      } else {
-        console.error('Failed to toggle favorite:', {
-          status: res.status,
-          statusText: res.statusText,
-          responseText: responseText,
-        });
-        setBooks(books.map(book => book.id === id ? { ...book, favorite: currentFavorite } : book));
-        console.log('Books state after rollback:', books);
-        alert(`Failed to toggle favorite: ${res.status} ${res.statusText} - ${responseText}`);
-        await fetchBooks();
+
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(`HTTP error ${res.status}: ${res.statusText} - ${errorText}`);
       }
+
+      const updatedBook = await res.json();
+      setBooks(books.map(book => book.id === id ? updatedBook : book));
+      await fetchBooks();
     } catch (error) {
-      if (error instanceof Error) {
-        console.error('Error toggling favorite:', error.message);
-      } else {
-        console.error('Unknown error toggling favorite:', error);
-      }
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      console.error('Error toggling favorite:', errorMessage);
+      // Rollback on error
       setBooks(books.map(book => book.id === id ? { ...book, favorite: currentFavorite } : book));
-      console.log('Books state after error rollback:', books);
-      alert(`Error toggling favorite: ${error instanceof Error ? error.message : 'Network error - check if the backend is running'}`);
+      alert(`Failed to toggle favorite: ${errorMessage}. Ensure the backend is running.`);
       await fetchBooks();
     }
   };
