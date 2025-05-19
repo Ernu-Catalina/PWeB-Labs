@@ -10,7 +10,7 @@ app.use((req, res, next) => {
 
 // Configure CORS for production with Vercel frontend
 const corsOptions = {
-  origin: 'https://butterfly-books-10d0u3ukz-linas-projects-f17e0da0.vercel.app',
+  origin: 'butterfly-books-delta.vercel.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Accept'],
   exposedHeaders: [],
