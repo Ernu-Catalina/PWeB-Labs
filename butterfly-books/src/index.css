@@ -10,55 +10,57 @@ body {
   font-family: 'Merriweather', serif;
   line-height: 1.6;
   background: var(--background);
-  min-height: 100vh; /* Ensure background covers full viewport */
+  min-height: 100vh;
+  color: var(--text); /* Ensure all text inherits theme color */
 }
 
 .app-container {
-  min-height: 100vh; /* Full viewport height */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: var(--background); /* Ensure background consistency */
+  background: var(--background);
 }
 
 .container {
   padding: 20px;
   background: var(--background);
-  flex: 1; /* Ensures container takes remaining space */
+  flex: 1;
 }
 
 .header {
-  position: fixed; /* Fixed position to stay at the top */
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000; /* Ensure it stays above other content */
-  background: var(--background); /* Match background for seamless look */
+  z-index: 1000;
+  background: var(--background);
   padding: 20px;
 }
 
 .main-layout {
   display: flex;
-  margin-top: 90px; /* Offset for fixed header height */
-  height: calc(100vh - 90px); /* Adjust for header height */
+  margin-top: 90px;
+  height: calc(100vh - 90px);
 }
 
 .add-book-section {
-  position: fixed; /* Fixed position to stay in place */
-  top: 90px; /* Below the header */
+  position: fixed;
+  top: 90px;
   left: 0;
-  width: 20%; /* Narrower BookForm at 20% width */
+  width: 25%;
   min-width: 250px;
-  z-index: 900; /* Below header but above library */
+  z-index: 900;
   padding: 20px;
 }
 
 .library-section {
-  margin-left: 20%; /* Offset for narrower BookForm width */
-  width: 80%; /* Takes remaining 80% of screen */
+  margin-left: 25%;
+  width: 75%;
   min-width: 400px;
-  height: calc(100vh - 90px); /* Full height minus header */
-  overflow-y: auto; /* Scrollable BookList */
-  padding: 20px;
+  height: calc(100vh - 90px);
+  overflow-y: auto;
+  padding: 15px;
+  padding-top: 10px;
 }
 
 .library-container {
@@ -67,18 +69,16 @@ body {
 }
 
 .filter-section {
-  position: fixed; /* Fixed to remove gap */
-  top: 90px; /* Directly below header */
-  width: calc(80% - 40px); /* Match library-section width minus padding */
-  margin-left: 20%; /* Align with library-section */
+  position: sticky;
+  top: 0;
   background: var(--background);
-  z-index: 800; /* Ensure filters stay above BookList */
-  padding-bottom: 10px;
+  z-index: 800;
+  padding: 15px;
 }
 
 .book-list-container {
-  margin-top: 90px; /* Offset for fixed filter-section */
   flex: 1;
+  padding: 10px;
 }
 
 .search-bar {
@@ -101,6 +101,11 @@ body {
   width: 300px;
 }
 
+.search-bar input::placeholder {
+  color: var(--text);
+  opacity: 0.6; /* Slightly faded for contrast */
+}
+
 .filter-row {
   display: inline-flex;
   align-items: center;
@@ -110,6 +115,10 @@ body {
 .filter-label {
   color: var(--text);
   font-weight: bold;
+}
+
+.favorites-label {
+  color: var(--text); /* Ensure "Favorites Only" adapts to theme */
 }
 
 .filter-row select {
@@ -160,7 +169,7 @@ body {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 10px var(--shadow);
-  min-height: 80vh; /* Extend to fill more vertical space */
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: flex-start; /* Align fields to the left */
@@ -175,17 +184,24 @@ body {
 }
 
 .form-fields {
-  width: 100%;
+  width: 95%; /* Slight margin on both sides */
+  margin: 0 auto; /* Center the fields container */
 }
 
 .book-form h2 {
   margin-bottom: 0; /* Remove default margin */
+  color: var(--text); /* Ensure theme color */
+}
+
+.form-label {
+  color: var(--text); /* Ensure "Title", "Author", "Cover Image URL", "Status" adapt to theme */
+  margin-bottom: 5px; /* Space between label and input */
 }
 
 .book-form input,
 .book-form select {
   display: block;
-  width: 90%; /* Wider fields */
+  width: 100%; /* Full width within form-fields for equal margins */
   padding: 10px;
   margin-bottom: 15px; /* Space between fields */
   border: none;
@@ -193,6 +209,11 @@ body {
   background: var(--input-bg);
   color: var(--text);
   font-family: 'Merriweather', serif;
+}
+
+.book-form input::placeholder {
+  color: var(--text);
+  opacity: 0.6; /* Slightly faded for contrast */
 }
 
 .book-form select {
@@ -255,6 +276,7 @@ body {
 .book-card h3 {
   font-size: 1rem; /* Smaller title */
   margin-bottom: 4px; /* Reduced margin */
+  color: var(--text); /* Ensure theme color */
 }
 
 .book-card p {

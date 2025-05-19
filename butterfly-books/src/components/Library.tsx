@@ -74,7 +74,7 @@ const Library: React.FC<LibraryProps> = ({
             <option value={4}>4 Stars</option>
             <option value={5}>5 Stars</option>
           </select>
-          <label>
+          <label className="favorites-label">
             <input
               type="checkbox"
               checked={favoriteFilter}

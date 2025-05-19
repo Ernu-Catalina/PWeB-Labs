@@ -20,7 +20,7 @@ const BookForm: React.FC<BookFormProps> = ({ newBook, setNewBook, addBook }) => 
       </div>
 
       <div className="form-fields">
-        <label htmlFor="title">Title</label>
+        <label htmlFor="title" className="form-label">Title</label>
         <input
           id="title"
           type="text"
@@ -29,7 +29,7 @@ const BookForm: React.FC<BookFormProps> = ({ newBook, setNewBook, addBook }) => 
           onChange={(e) => setNewBook({ ...newBook, title: e.target.value })}
         />
 
-        <label htmlFor="author">Author</label>
+        <label htmlFor="author" className="form-label">Author</label>
         <input
           id="author"
           type="text"
@@ -38,7 +38,7 @@ const BookForm: React.FC<BookFormProps> = ({ newBook, setNewBook, addBook }) => 
           onChange={(e) => setNewBook({ ...newBook, author: e.target.value })}
         />
 
-        <label htmlFor="coverImage">Cover Image URL</label>
+        <label htmlFor="coverImage" className="form-label">Cover Image URL</label>
         <input
           id="coverImage"
           type="text"
@@ -47,7 +47,7 @@ const BookForm: React.FC<BookFormProps> = ({ newBook, setNewBook, addBook }) => 
           onChange={(e) => setNewBook({ ...newBook, coverImage: e.target.value })}
         />
 
-        <label htmlFor="status-select">Status</label>
+        <label htmlFor="status-select" className="form-label">Status</label>
         <select
           id="status-select"
           value={newBook.status}
@@ -67,7 +67,7 @@ const BookForm: React.FC<BookFormProps> = ({ newBook, setNewBook, addBook }) => 
 
         {newBook.status === 'Read' && (
           <>
-            <label htmlFor="rating-select">Rating (1-5 stars)</label>
+            <label htmlFor="rating-select" className="form-label">Rating (1-5 stars)</label>
             <select
               id="rating-select"
               value={newBook.rating}
