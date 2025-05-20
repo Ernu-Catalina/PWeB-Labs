@@ -14,7 +14,7 @@ const corsOptions = {
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Accept'],
   exposedHeaders: [],
-  credentials: false,
+  credentials: true,
   maxAge: 600,
 };
 
@@ -118,7 +118,7 @@ app.delete('/api/books/:id', (req, res) => {
   res.status(204).send();
 });
 
-// Start server on Render-assigned port
+
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
