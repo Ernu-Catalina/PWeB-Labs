@@ -8,13 +8,13 @@ app.use((req, res, next) => {
   next();
 });
 
-// Configure CORS for production with Vercel frontend
+// Configure CORS for production with updated Vercel frontend domain
 const corsOptions = {
-  origin: 'butterfly-books-clfl6n5cp-linas-projects-f17e0da0.vercel.app',
+  origin: 'https://butterfly-books-delta.vercel.app', // Updated to match current frontend domain
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Accept'],
   exposedHeaders: [],
-  credentials: true,
+  credentials: false,
   maxAge: 600,
 };
 
@@ -118,8 +118,8 @@ app.delete('/api/books/:id', (req, res) => {
   res.status(204).send();
 });
 
-
-const PORT = process.env.PORT || 10000;
+// Start server on Render-assigned port
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
