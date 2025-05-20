@@ -141,7 +141,7 @@ const App: React.FC = () => {
     try {
       const res = await fetch(`${API_URL}/api/books/${id}`, {
         method: 'PUT',
-        mode: 'no-cors',
+        mode: 'cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ favorite: !currentFavorite }),
       });
